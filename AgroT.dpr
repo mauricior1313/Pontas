@@ -19,6 +19,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDtmMain, DtmMain);
   Application.CreateForm(TFrmMain, FrmMain);
-  Application.CreateForm(TFrmPesquisa, FrmPesquisa);
   Application.Run;
 end.
