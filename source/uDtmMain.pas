@@ -3,7 +3,7 @@ unit uDtmMain;
 interface
 
 uses
-  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
   FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client;
 
@@ -23,18 +23,22 @@ var
 
 implementation
 
+uses
+  System.SysUtils, Vcl.Forms;
+
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
 
 procedure TDtmMain.DataModuleCreate(Sender: TObject);
 begin
-  ConPrincipal.Connected := True;
+  ConPrincipal.Params.LoadFromFile(ExtractFilePath(Application.ExeName) + 'AgroT.ini');
+  ConPrincipal.Open;
 end;
 
 procedure TDtmMain.DataModuleDestroy(Sender: TObject);
 begin
-  ConPrincipal.Connected := False;
+  ConPrincipal.Close;
 end;
 
 end.
